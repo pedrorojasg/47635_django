@@ -9,4 +9,15 @@ def saludar(request):
 
 
 def listar_estudiantes(request):
-    return render(request=request, template_name='estudiantes/lista_estudiantes.html')
+    contexto = {
+        'estudiantes': ['Lervin', 'Nazareno', 'Leonardo']
+    }
+    return render(
+        request=request,
+        template_name='estudiantes/lista_estudiantes.html',
+        context=contexto
+    )
+
+
+def listar_profesores(request):
+    return render(request=request, template_name='estudiantes/lista_profesores.html')
