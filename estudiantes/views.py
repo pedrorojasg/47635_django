@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from datetime import datetime
+from estudiantes.models import Estudiante
 
 
 def saludar(request):
@@ -10,7 +12,7 @@ def saludar(request):
 
 def listar_estudiantes(request):
     contexto = {
-        'estudiantes': ['Lervin', 'Nazareno', 'Leonardo']
+        'estudiantes': Estudiante.objects.all()
     }
     return render(
         request=request,

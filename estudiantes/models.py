@@ -5,7 +5,7 @@ class Curso(models.Model):
     comision = models.IntegerField()
 
 
-class Estudiantes(models.Model):
+class Estudiante(models.Model):
     nombre = models.CharField(max_length=256)
     apellido = models.CharField(max_length=256)
     dni = models.CharField(max_length=32)
