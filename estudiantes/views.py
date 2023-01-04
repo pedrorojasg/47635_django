@@ -3,7 +3,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from estudiantes.models import Estudiante
+from estudiantes.models import Estudiante, Profesor
 
 
 def saludar(request):
@@ -17,9 +17,16 @@ def listar_estudiantes(request):
     return render(
         request=request,
         template_name='estudiantes/lista_estudiantes.html',
-        context=contexto
+        context=contexto,
     )
 
 
 def listar_profesores(request):
-    return render(request=request, template_name='estudiantes/lista_profesores.html')
+    contexto = {
+        'profesores': Profesor.objects.all()
+    }
+    return render(
+        request=request,
+        template_name='estudiantes/lista_profesores.html',
+        context=contexto,
+    )
