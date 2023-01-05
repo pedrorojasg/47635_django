@@ -7,7 +7,10 @@ from estudiantes.models import Estudiante, Profesor
 
 
 def saludar(request):
-    return HttpResponse(f'Hola comision 47635. Hora: {datetime.now()}')
+    return render(
+        request=request,
+        template_name='estudiantes/inicio.html',
+    )
 
 
 def listar_estudiantes(request):
