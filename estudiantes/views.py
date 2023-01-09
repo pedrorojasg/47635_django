@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from estudiantes.models import Estudiante, Profesor
 
 
-def saludar(request):
+def inicio(request):
     return render(
         request=request,
         template_name='estudiantes/inicio.html',
