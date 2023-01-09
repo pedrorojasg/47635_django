@@ -1,0 +1,12 @@
+{% extends "estudiantes/base.html" %}
+
+{% block subtitulo %}Lista de cursos{% endblock subtitulo %}
+
+{% block contenido %}
+<h1>Lista de cursos</h1>
+<ul>
+{% for curso in cursos %}
+  <li>{{ curso.nombre }}, {{ curso.comision }}</li>
+{% endfor %}
+</ul>
+{% endblock contenido %}
