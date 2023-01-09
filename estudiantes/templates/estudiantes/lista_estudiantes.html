@@ -2,9 +2,15 @@
 
 {% block subtitulo %}Lista de estudiantes{% endblock subtitulo %}
 
+{% block estilos %}
+h1.titulos-coder {
+  color: green;
+}
+{% endblock estilos %}
+
 {% block contenido %}
 {% include "estudiantes/barra_saludo.html" %}
-<h1>Lista de estudiantes</h1>
+<h1 class="titulos-coder">Lista de estudiantes</h1>
 <ul>
 {% for student in estudiantes %}
   <li>{{ student.apellido }}, {{ student.nombre }}</li>

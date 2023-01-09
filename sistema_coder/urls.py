@@ -20,7 +20,7 @@ from estudiantes.views import inicio
 
 
 urlpatterns = [
-    path('', inicio),
+    path('', inicio, name="inicio"),
     path('admin/', admin.site.urls),
     path('plataforma/', include('estudiantes.urls')),
 ]
