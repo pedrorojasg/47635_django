@@ -5,7 +5,10 @@
 {% block contenido %}
 <form action="{% url 'crear_curso' %}" method="post">
   {% csrf_token %}
-  {{ formulario.as_p }}
-  <input type="submit" value="Enviar" />
+  <p>Nombre del curso:</p>
+  <input type="text" name="nombre">
+  <p>Comision:</p>
+  <input type="number" name="comision">
+  <input type="submit" value="Enviar">
 </form>
 {% endblock contenido %}
