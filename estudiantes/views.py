@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse
@@ -86,7 +87,9 @@ def crear_curso(request):
 def buscar_cursos(request):
     if request.method == "POST":
         data = request.POST
-        cursos = Curso.objects.filter(nombre__contains=data['nombre'])
+        cursos = Curso.objects.filter(
+            Q(nombre__contains=data['busqueda']) | Q(comision__exact=data['busqueda'])
+        )
         contexto = {
             'cursos': cursos
         }
@@ -94,9 +97,4 @@ def buscar_cursos(request):
             request=request,
             template_name='estudiantes/lista_cursos.html',
             context=contexto,
-        )
-    else:  # GET
-        return render(
-            request=request,
-            template_name='estudiantes/busqueda_curso.html',
         )

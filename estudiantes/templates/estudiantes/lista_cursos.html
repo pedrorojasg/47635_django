@@ -5,8 +5,15 @@
 {% block contenido %}
 <h1>Lista de cursos</h1>
 <a href="{% url 'crear_curso' %}">Añadir</a>
-<a href="{% url 'buscar_cursos' %}">Buscar</a>
-<br><br>
+<br>
+
+<form action="{% url 'buscar_cursos' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="busqueda">
+  <input type="submit" value="Buscar">
+</form>
+<br>
+
 <ul>
 {% for curso in cursos %}
   <li>{{ curso.nombre }}, {{ curso.comision }}</li>
