@@ -4,6 +4,8 @@
 
 {% block contenido %}
 <h1>Lista de cursos</h1>
+<a href="{% url 'crear_curso' %}">Añadir curso</a>
+<br><br>
 <ul>
 {% for curso in cursos %}
   <li>{{ curso.nombre }}, {{ curso.comision }}</li>
