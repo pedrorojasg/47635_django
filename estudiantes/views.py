@@ -81,3 +81,22 @@ def crear_curso(request):
         template_name='estudiantes/formulario_curso.html',
         context={'formulario': formulario},
     )
+
+
+def buscar_cursos(request):
+    if request.method == "POST":
+        data = request.POST
+        cursos = Curso.objects.filter(nombre__contains=data['nombre'])
+        contexto = {
+            'cursos': cursos
+        }
+        return render(
+            request=request,
+            template_name='estudiantes/lista_cursos.html',
+            context=contexto,
+        )
+    else:  # GET
+        return render(
+            request=request,
+            template_name='estudiantes/busqueda_curso.html',
+        )

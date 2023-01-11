@@ -1,0 +1,12 @@
+{% extends "estudiantes/base.html" %}
+
+{% block subtitulo %}Buscar curso{% endblock subtitulo %}
+
+{% block contenido %}
+<form action="{% url 'buscar_cursos' %}" method="post">
+  {% csrf_token %}
+  <p>Nombre del curso:</p>
+  <input type="text" name="nombre">
+  <input type="submit" value="Enviar">
+</form>
+{% endblock contenido %}
