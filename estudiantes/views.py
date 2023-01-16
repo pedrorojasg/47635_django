@@ -123,6 +123,14 @@ def editar_curso(request, id):
     )
 
 
+def eliminar_curso(request, id):
+    curso = Curso.objects.get(id=id)
+    if request.method == "POST":
+        curso.delete()
+        url_exitosa = reverse('listar_cursos')
+        return redirect(url_exitosa)
+
+
 def buscar_cursos(request):
     if request.method == "POST":
         data = request.POST

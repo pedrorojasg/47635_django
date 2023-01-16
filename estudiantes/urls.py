@@ -2,7 +2,7 @@ from django.urls import path
 
 from estudiantes.views import (
     listar_estudiantes, listar_profesores, listar_cursos,
-    crear_curso, buscar_cursos, ver_curso, editar_curso
+    crear_curso, buscar_cursos, ver_curso, editar_curso, eliminar_curso
 )
 
 
@@ -14,4 +14,5 @@ urlpatterns = [
     path('buscar-cursos/', buscar_cursos, name="buscar_cursos"),
     path('cursos/<int:id>/', ver_curso, name="ver_curso"),
     path('editar-curso/<int:id>/', editar_curso, name="editar_curso"),
+    path('eliminar-curso/<int:id>/', eliminar_curso, name="eliminar_curso"),
 ]

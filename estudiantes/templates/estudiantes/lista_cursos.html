@@ -33,7 +33,12 @@
       <td>
         <a href="{% url 'editar_curso' curso.id %}">Editar</a>
       </td>
-      <td>Eliminar</td>
+      <td>
+        <form action="{% url 'eliminar_curso' curso.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="eliminar"/>
+        </form
+      </td>
     </tr>
     {% endfor %}
   </tbody>
