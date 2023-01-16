@@ -50,6 +50,18 @@ def listar_cursos(request):
     )
 
 
+def ver_curso(request, id):
+    curso = Curso.objects.get(id=id)
+    contexto = {
+        'curso': curso
+    }
+    return render(
+        request=request,
+        template_name='estudiantes/detalle_curso.html',
+        context=contexto,
+    )
+
+
 def crear_curso_version_1(request):
     """No la estamos usando"""
     if request.method == "POST":
@@ -71,7 +83,7 @@ def crear_curso(request):
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-            curso = Curso(nombre=data['nombre'], comision=data['comision'])
+            curso = Curso(nombre=data['nombre'], comision=data['comision'], descripcion=data['descripcion'])
             curso.save()
             url_exitosa = reverse('listar_cursos')
             return redirect(url_exitosa)

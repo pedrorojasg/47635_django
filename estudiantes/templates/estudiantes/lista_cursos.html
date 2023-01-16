@@ -14,9 +14,27 @@
 </form>
 <br>
 
-<ul>
-{% for curso in cursos %}
-  <li>{{ curso.nombre }}, {{ curso.comision }}</li>
-{% endfor %}
-</ul>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Nombre</th>
+      <th>Comision</th>
+      <td>Ver</td>
+      <td>Editar</td>
+      <td>Eliminar</td>
+    </tr>
+    {% for curso in cursos %}
+    <tr>
+      <td>{{ curso.nombre }}</td>
+      <td>{{ curso.comision }}</td>
+      <td>
+        <a href="{% url 'ver_curso' curso.id %}">Ver</a>
+      </td>
+      <td>Editar</td>
+      <td>Eliminar</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock contenido %}

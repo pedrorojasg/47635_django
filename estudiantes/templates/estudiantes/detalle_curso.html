@@ -1,0 +1,20 @@
+{% extends "estudiantes/base.html" %}
+
+{% block subtitulo %}Info del curso{% endblock subtitulo %}
+
+{% block contenido %}
+<h4>{{curso.nombre}}</h4>
+<span>
+  <b>Comision:</b> {{curso.comision}}
+</span>
+<br>
+{% if curso.descripcion %}
+<span>
+  <b>Descripcion:</b> {{curso.descripcion}}
+</span>
+{% endif %}
+<br><br>
+
+<a href="{% url 'listar_cursos' %}">Volver a la lista</a>
+
+{% endblock contenido %}
