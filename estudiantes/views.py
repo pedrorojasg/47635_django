@@ -96,6 +96,33 @@ def crear_curso(request):
     )
 
 
+def editar_curso(request, id):
+    curso = Curso.objects.get(id=id)
+    if request.method == "POST":
+        formulario = CursoFormulario(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            curso.nombre = data['nombre']
+            curso.comision = data['comision']
+            curso.descripcion = data['descripcion']
+            curso.save()
+            url_exitosa = reverse('listar_cursos')
+            return redirect(url_exitosa)
+    else:  # GET
+        inicial = {
+            'nombre': curso.nombre,
+            'comision': curso.comision,
+            'descripcion': curso.descripcion,
+        }
+        formulario = CursoFormulario(initial=inicial)
+    return render(
+        request=request,
+        template_name='estudiantes/formulario_curso.html',
+        context={'formulario': formulario, 'curso': curso, 'es_update': True},
+    )
+
+
 def buscar_cursos(request):
     if request.method == "POST":
         data = request.POST

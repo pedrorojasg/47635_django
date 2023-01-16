@@ -30,7 +30,9 @@
       <td>
         <a href="{% url 'ver_curso' curso.id %}">Ver</a>
       </td>
-      <td>Editar</td>
+      <td>
+        <a href="{% url 'editar_curso' curso.id %}">Editar</a>
+      </td>
       <td>Eliminar</td>
     </tr>
     {% endfor %}
