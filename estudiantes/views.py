@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from estudiantes.models import Estudiante, Profesor, Curso
 from estudiantes.forms import CursoFormulario
@@ -16,16 +17,16 @@ def inicio(request):
     )
 
 
-def listar_estudiantes(request):
-    ## Aqui iria la validacion del permiso lectura estudiantes
-    contexto = {
-        'estudiantes': Estudiante.objects.all()
-    }
-    return render(
-        request=request,
-        template_name='estudiantes/lista_estudiantes.html',
-        context=contexto,
-    )
+# def listar_estudiantes(request):
+#     ## Aqui iria la validacion del permiso lectura estudiantes
+#     contexto = {
+#         'estudiantes': Estudiante.objects.all()
+#     }
+#     return render(
+#         request=request,
+#         template_name='estudiantes/lista_estudiantes.html',
+#         context=contexto,
+#     )
 
 
 def listar_profesores(request):
@@ -145,3 +146,9 @@ def buscar_cursos(request):
             template_name='estudiantes/lista_cursos.html',
             context=contexto,
         )
+
+
+class EstudianteListView(ListView):
+    model = Estudiante
+    template_name = 'estudiantes/lista_estudiantes.html'
+

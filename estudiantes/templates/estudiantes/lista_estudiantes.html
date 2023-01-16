@@ -12,7 +12,7 @@ h1.titulos-coder {
 {% include "estudiantes/barra_saludo.html" %}
 <h1 class="titulos-coder">Lista de estudiantes</h1>
 <ul>
-{% for student in estudiantes %}
+{% for student in object_list %}
   <li>{{ student.apellido }}, {{ student.nombre }}</li>
 {% endfor %}
 </ul>
