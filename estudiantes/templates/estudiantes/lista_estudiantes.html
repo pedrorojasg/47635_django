@@ -11,9 +11,31 @@ h1.titulos-coder {
 {% block contenido %}
 {% include "estudiantes/barra_saludo.html" %}
 <h1 class="titulos-coder">Lista de estudiantes</h1>
-<ul>
-{% for student in object_list %}
-  <li>{{ student.apellido }}, {{ student.nombre }}</li>
-{% endfor %}
-</ul>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <td>Ver</td>
+      <td>Editar</td>
+      <td>Eliminar</td>
+    </tr>
+    {% for alumno in object_list %}
+    <tr>
+      <td>{{ alumno.nombre }}</td>
+      <td>{{ alumno.apellido }}</td>
+      <td>
+        Ver
+      </td>
+      <td>
+        <a href="{% url 'editar_alumno' alumno.id %}">Editar</a>
+      </td>
+      <td>Eliminar</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
 {% endblock contenido %}

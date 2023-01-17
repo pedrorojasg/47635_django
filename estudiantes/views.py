@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -152,3 +152,24 @@ class EstudianteListView(ListView):
     model = Estudiante
     template_name = 'estudiantes/lista_estudiantes.html'
 
+
+class EstudianteCreateView(CreateView):
+    model = Estudiante
+    fields = ['nombre', 'apellido', 'dni', 'email']
+    success_url = reverse_lazy('listar_alumnos')
+
+
+class EstudianteDetailView(DetailView):
+    model = Estudiante
+    success_url = reverse_lazy('listar_alumnos')
+
+
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
+    fields = ['nombre', 'apellido', 'dni', 'email']
+    success_url = reverse_lazy('listar_alumnos')
+
+
+class EstudianteDeleteView(DeleteView):
+    model = Estudiante
+    success_url = reverse_lazy('listar_alumnos')
