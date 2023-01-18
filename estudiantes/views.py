@@ -4,10 +4,11 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from estudiantes.models import Estudiante, Profesor, Curso
-from estudiantes.forms import CursoFormulario
+from estudiantes.forms import CursoFormulario, UserRegisterForm
 
 
 def inicio(request):
@@ -15,18 +16,6 @@ def inicio(request):
         request=request,
         template_name='estudiantes/inicio.html',
     )
-
-
-# def listar_estudiantes(request):
-#     ## Aqui iria la validacion del permiso lectura estudiantes
-#     contexto = {
-#         'estudiantes': Estudiante.objects.all()
-#     }
-#     return render(
-#         request=request,
-#         template_name='estudiantes/lista_estudiantes.html',
-#         context=contexto,
-#     )
 
 
 def listar_profesores(request):
@@ -177,3 +166,20 @@ class EstudianteDeleteView(DeleteView):
     model = Estudiante
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/confirmar_eliminacion_estudiante.html"
+
+
+def registro(request):
+    if request.method == "POST":
+        formulario = UserRegisterForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()  # Esto lo puedo usar porque es un model form
+            url_exitosa = reverse('inicio')
+            return redirect(url_exitosa)
+    else:  # GET
+        formulario = UserRegisterForm()
+    return render(
+        request=request,
+        template_name='estudiantes/registro.html',
+        context={'form': formulario},
+    )
