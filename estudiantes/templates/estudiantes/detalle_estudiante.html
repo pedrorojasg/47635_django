@@ -1,0 +1,12 @@
+{% extends "estudiantes/base.html" %}
+
+{% block subtitulo %}Info del estudiante{% endblock subtitulo %}
+
+{% block contenido %}
+<h4>{{object.apellido}}, {{object.nombre}}</h4>
+<span><b>DNI:</b> {{object.dni}}</span>
+
+<br>
+<a href="{% url 'listar_estudiantes' %}">Volver a la lista</a>
+
+{% endblock contenido %}

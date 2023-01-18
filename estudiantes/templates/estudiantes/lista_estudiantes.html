@@ -11,6 +11,8 @@ h1.titulos-coder {
 {% block contenido %}
 {% include "estudiantes/barra_saludo.html" %}
 <h1 class="titulos-coder">Lista de estudiantes</h1>
+<a href="{% url 'crear_estudiante' %}">Añadir</a>
+<br><br>
 
 <table class="table">
   <tbody>
@@ -26,7 +28,7 @@ h1.titulos-coder {
       <td>{{ estudiante.nombre }}</td>
       <td>{{ estudiante.apellido }}</td>
       <td>
-        Ver
+        <a href="{% url 'ver_estudiante' estudiante.id %}">Ver</a>
       </td>
       <td>
         <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>

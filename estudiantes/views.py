@@ -150,24 +150,27 @@ def buscar_cursos(request):
 
 class EstudianteListView(ListView):
     model = Estudiante
-    template_name = 'estudiantes/lista_estudiantes.html'
+    template_name = "estudiantes/lista_estudiantes.html"
 
 
 class EstudianteCreateView(CreateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
     success_url = reverse_lazy('listar_estudiantes')
+    template_name = "estudiantes/formulario_estudiante.html"
 
 
 class EstudianteDetailView(DetailView):
     model = Estudiante
     success_url = reverse_lazy('listar_estudiantes')
+    template_name = "estudiantes/detalle_estudiante.html"
 
 
 class EstudianteUpdateView(UpdateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
     success_url = reverse_lazy('listar_estudiantes')
+    template_name = "estudiantes/formulario_estudiante.html"
 
 
 class EstudianteDeleteView(DeleteView):
