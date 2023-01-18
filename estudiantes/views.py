@@ -9,11 +9,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import login, authenticate
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from estudiantes.models import Estudiante, Profesor, Curso
 from estudiantes.forms import CursoFormulario, UserRegisterForm
 
 
+@login_required
 def inicio(request):
     return render(
         request=request,
@@ -21,6 +24,7 @@ def inicio(request):
     )
 
 
+@login_required
 def listar_profesores(request):
     contexto = {
         'profesores': Profesor.objects.all()
@@ -70,6 +74,7 @@ def crear_curso_version_1(request):
         )
 
 
+@login_required
 def crear_curso(request):
     if request.method == "POST":
         formulario = CursoFormulario(request.POST)
@@ -89,6 +94,7 @@ def crear_curso(request):
     )
 
 
+@login_required
 def editar_curso(request, id):
     curso = Curso.objects.get(id=id)
     if request.method == "POST":
@@ -116,6 +122,7 @@ def editar_curso(request, id):
     )
 
 
+@login_required
 def eliminar_curso(request, id):
     curso = Curso.objects.get(id=id)
     if request.method == "POST":
@@ -140,32 +147,32 @@ def buscar_cursos(request):
         )
 
 
-class EstudianteListView(ListView):
+class EstudianteListView(LoginRequiredMixin, ListView):
     model = Estudiante
     template_name = "estudiantes/lista_estudiantes.html"
 
 
-class EstudianteCreateView(CreateView):
+class EstudianteCreateView(LoginRequiredMixin, CreateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/formulario_estudiante.html"
 
 
-class EstudianteDetailView(DetailView):
+class EstudianteDetailView(LoginRequiredMixin, DetailView):
     model = Estudiante
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/detalle_estudiante.html"
 
 
-class EstudianteUpdateView(UpdateView):
+class EstudianteUpdateView(LoginRequiredMixin, UpdateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/formulario_estudiante.html"
 
 
-class EstudianteDeleteView(DeleteView):
+class EstudianteDeleteView(LoginRequiredMixin, DeleteView):
     model = Estudiante
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/confirmar_eliminacion_estudiante.html"
