@@ -120,7 +120,7 @@ def editar_curso(request, id):
     return render(
         request=request,
         template_name='estudiantes/formulario_curso.html',
-        context={'formulario': formulario, 'curso': curso, 'es_update': True},
+        context={'formulario': formulario},
     )
 
 
@@ -156,20 +156,20 @@ class EstudianteListView(ListView):
 class EstudianteCreateView(CreateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
-    success_url = reverse_lazy('listar_alumnos')
+    success_url = reverse_lazy('listar_estudiantes')
 
 
 class EstudianteDetailView(DetailView):
     model = Estudiante
-    success_url = reverse_lazy('listar_alumnos')
+    success_url = reverse_lazy('listar_estudiantes')
 
 
 class EstudianteUpdateView(UpdateView):
     model = Estudiante
     fields = ['nombre', 'apellido', 'dni', 'email']
-    success_url = reverse_lazy('listar_alumnos')
+    success_url = reverse_lazy('listar_estudiantes')
 
 
 class EstudianteDeleteView(DeleteView):
     model = Estudiante
-    success_url = reverse_lazy('listar_alumnos')
+    success_url = reverse_lazy('listar_estudiantes')
