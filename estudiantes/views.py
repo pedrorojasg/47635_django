@@ -176,3 +176,4 @@ class EstudianteUpdateView(UpdateView):
 class EstudianteDeleteView(DeleteView):
     model = Estudiante
     success_url = reverse_lazy('listar_estudiantes')
+    template_name = "estudiantes/confirmar_eliminacion_estudiante.html"

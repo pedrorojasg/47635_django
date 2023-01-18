@@ -33,7 +33,9 @@ h1.titulos-coder {
       <td>
         <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>
       </td>
-      <td>Eliminar</td>
+      <td>
+        <a href="{% url 'eliminar_estudiante' estudiante.id %}">Eliminar</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
