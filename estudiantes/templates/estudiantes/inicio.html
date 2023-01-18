@@ -3,5 +3,5 @@
 {% block subtitulo %}Inicio{% endblock subtitulo %}
 
 {% block contenido %}
-<h1>Bienvenidos al sistema coder</h1>
+<h1>Bienvenido, {{ request.user.first_name }}</h1>
 {% endblock contenido %}

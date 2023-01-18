@@ -4,7 +4,8 @@ from estudiantes.views import (
     listar_profesores, listar_cursos,
     crear_curso, buscar_cursos, ver_curso, editar_curso, eliminar_curso,
     EstudianteListView, EstudianteCreateView, EstudianteUpdateView,
-    EstudianteDeleteView, EstudianteDetailView, registro
+    EstudianteDeleteView, EstudianteDetailView, registro, login_view,
+    CustomLogoutView
 )
 
 
@@ -24,5 +25,7 @@ urlpatterns = [
     path('editar-estudiante/<int:pk>/', EstudianteUpdateView.as_view(), name="editar_estudiante"),
     path('eliminar-estudiante/<int:pk>/', EstudianteDeleteView.as_view(), name="eliminar_estudiante"),
     # URLS Usuario y sesion
-    path('registro/', registro, name="registro")
+    path('registro/', registro, name="registro"),
+    path('login/', login_view, name="login"),
+    path('logout/', CustomLogoutView.as_view(), name="logout"),
 ]
