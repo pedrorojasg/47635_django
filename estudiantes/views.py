@@ -223,4 +223,3 @@ def login_view(request):
 
 class CustomLogoutView(LogoutView):
     template_name = 'estudiantes/logout.html'
-    next_page = reverse_lazy('inicio')
