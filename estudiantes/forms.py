@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from estudiantes.models import Profesor
+from estudiantes.models import Profesor, Avatar
 
 class CursoFormulario(forms.Form):
     nombre = forms.CharField(max_length=64)
@@ -32,3 +32,10 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['last_name', 'first_name', 'email']
+
+
+class AvatarFormulario(forms.ModelForm):
+
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

@@ -5,7 +5,7 @@ from estudiantes.views import (
     crear_curso, buscar_cursos, ver_curso, editar_curso, eliminar_curso,
     EstudianteListView, EstudianteCreateView, EstudianteUpdateView,
     EstudianteDeleteView, EstudianteDetailView, registro, login_view,
-    CustomLogoutView, ProfileUpdateView
+    CustomLogoutView, ProfileUpdateView, agregar_avatar
 )
 
 
@@ -30,4 +30,5 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name="logout"),
     # URLS de Perfil
     path('editar-perfil/', ProfileUpdateView.as_view(), name="editar_perfil"),
+    path('agregar-avatar/', agregar_avatar, name="agregar_avatar"),
 ]

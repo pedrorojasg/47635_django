@@ -12,8 +12,8 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from estudiantes.models import Estudiante, Profesor, Curso
-from estudiantes.forms import CursoFormulario, UserRegisterForm, UserUpdateForm
+from estudiantes.models import Estudiante, Profesor, Curso, Avatar
+from estudiantes.forms import CursoFormulario, UserRegisterForm, UserUpdateForm, AvatarFormulario
 
 
 @login_required
@@ -233,3 +233,22 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        formulario = AvatarFormulario(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
+
+        if formulario.is_valid():
+            avatar = formulario.save()
+            avatar.user = request.user
+            avatar.save()
+            url_exitosa = reverse('inicio')
+            return redirect(url_exitosa)
+    else:  # GET
+        formulario = AvatarFormulario()
+    return render(
+        request=request,
+        template_name='estudiantes/formulario_avatar.html',
+        context={'form': formulario},
+    )
