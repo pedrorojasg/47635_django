@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from estudiantes.models import Estudiante, Profesor, Curso
-from estudiantes.forms import CursoFormulario, UserRegisterForm
+from estudiantes.forms import CursoFormulario, UserRegisterForm, UserUpdateForm
 
 
 @login_required
@@ -223,3 +223,13 @@ def login_view(request):
 
 class CustomLogoutView(LogoutView):
     template_name = 'estudiantes/logout.html'
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('inicio')
+    template_name = 'estudiantes/formulario_perfil.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user

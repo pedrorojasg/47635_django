@@ -25,3 +25,10 @@ class ProfesorForm(forms.ModelForm):
     class Meta:
         model = Profesor
         fields = ['nombre', 'apellido', 'dni', 'email',]
+
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['last_name', 'first_name', 'email']
