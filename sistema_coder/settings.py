@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'estudiantes',  # activo la app estudiantes
+    'chat',  # activo la app chat
 ]
 
 MIDDLEWARE = [
