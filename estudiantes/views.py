@@ -81,7 +81,10 @@ def crear_curso(request):
 
         if formulario.is_valid():
             data = formulario.cleaned_data
-            curso = Curso(nombre=data['nombre'], comision=data['comision'], descripcion=data['descripcion'])
+            curso = Curso(
+                nombre=data['nombre'], comision=data['comision'], descripcion=data['descripcion'],
+                owner=request.user
+            )
             curso.save()
             url_exitosa = reverse('listar_cursos')
             return redirect(url_exitosa)
@@ -157,6 +160,11 @@ class EstudianteCreateView(LoginRequiredMixin, CreateView):
     fields = ['nombre', 'apellido', 'dni', 'email']
     success_url = reverse_lazy('listar_estudiantes')
     template_name = "estudiantes/formulario_estudiante.html"
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save(owner=self.request.user)
+        return super().form_valid(form)
 
 
 class EstudianteDetailView(LoginRequiredMixin, DetailView):

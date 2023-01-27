@@ -44,4 +44,15 @@
   </tbody>
 </table>
 
+<button onclick="myAlerta1()">Abrir mi alerta</button>
+
 {% endblock contenido %}
+
+
+{% block script_extra %}
+<script>
+  function myAlerta1() {
+    alert("Hello! I am an alert box!!");
+  }
+</script>
+{% endblock script_extra %}

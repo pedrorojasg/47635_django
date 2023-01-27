@@ -7,6 +7,7 @@ class Curso(models.Model):
     comision = models.IntegerField()
     fecha_inicio = models.DateField(null=True)
     descripcion = models.TextField(null=True)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nombre}, {self.comision}"

@@ -30,10 +30,14 @@ h1.titulos-coder {
         <a href="{% url 'ver_estudiante' estudiante.id %}">Ver</a>
       </td>
       <td>
-        <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>
+        {% if estudiante.owner == user %}
+          <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>
+        {% endif %}
       </td>
       <td>
-        <a href="{% url 'eliminar_estudiante' estudiante.id %}">Eliminar</a>
+        {% if estudiante.owner == user %}
+          <a href="{% url 'eliminar_estudiante' estudiante.id %}">Eliminar</a>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}

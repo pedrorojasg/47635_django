@@ -25,6 +25,7 @@ urlpatterns = [
     path('', inicio, name="inicio"),
     path('admin/', admin.site.urls),
     path('plataforma/', include('estudiantes.urls')),
+    path('messages/', include('chat.urls')),
 ]
 
 # Para las imagenes
